@@ -1,0 +1,53 @@
+[
+    {
+        "groupID" : "01",
+        "type" : "01",
+        "name": "ORIGINAL TEE",
+        "price":"3000",
+        "samplemain":"img/ikuyoT/T_front.png",
+        "samples":[
+            {"sample":"img/ikuyoT/T_front.png"},
+            {"sample":"img/ikuyoT/T_back.png"}
+        ],
+        "description":"ikuyoオリジナルの長袖Tシャツです。フロント中央にブランドロゴ、バックにプリントを施しています。",
+        "items": [
+            {"id": "01", "size" : "S" ,"color" : "white","listItem" : "white S","stock" : true, "image": "img/ikuyoT/T_front.png"},
+            {"id": "02", "size" : "M" ,"color" : "white","listItem" : "white M","stock" : true, "image": "img/ikuyoT/T_front.png"},
+            {"id": "03", "size" : "L" ,"color" : "white","listItem" : "white L","stock" : true, "image": "img/ikuyoT/T_front.png"}
+        ]
+    },
+    {
+        "groupID" : "02",
+        "type" : "01",
+        "name": "ORIGINAL HOODIE",
+        "price":"7000",
+        "samplemain":"img/hoodie/sample_front.png",
+        "samples":[
+            {"sample":"img/hoodie/sample_front.png"},
+            {"sample":"img/hoodie/sample_back.png"}
+        ],
+        "description":"ikuyoオリジナルパーカーです。フロントにブランドロゴ、バックにプリントを施しています。2色展開です。",
+        "items": [
+            {"id": "07", "size" : "S" ,"color" : "naivy","listItem" : "naivy S","stock" : true, "image": "img/hoodie/sample_front.png" },
+            {"id": "08", "size" : "M" ,"color" : "naivy","listItem" : "naivy M","stock" : true, "image": "img/hoodie/sample_front.png" },
+            {"id": "09", "size" : "L" ,"color" : "naivy","listItem" : "naivy L","stock" : true, "image": "img/hoodie/sample_front.png" },
+            {"id": "10", "size" : "S" ,"color" : "black","listItem" : "black S","stock" : true, "image": "img/hoodie/sample_front.png" },
+            {"id": "11", "size" : "M" ,"color" : "black","listItem" : "black M","stock" : true, "image": "img/hoodie/sample_front.png" },
+            {"id": "12", "size" : "L" ,"color" : "black","listItem" : "black L","stock" : true, "image": "img/hoodie/sample_front.png" }
+        ]
+    },
+    {
+        "groupID" : "03",
+        "type" : "03",
+        "name": "STICKER",
+        "price":"1000",
+        "samplemain":"img/sticker1.jpg",
+        "samples":[
+            {"sample":"img/sticker1.jpg"}
+        ],
+        "description":"ラブリー",
+        "items": [
+            {"id": "13","image": "img/sticker1.jpg","listItem" : "ONLYONEITEM" }
+        ]
+    }
+]

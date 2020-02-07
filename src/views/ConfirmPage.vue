@@ -17,7 +17,7 @@ export default {
     }
   },
   created(){
-    console.log('sss')
+    
   },
   computed:{
   },

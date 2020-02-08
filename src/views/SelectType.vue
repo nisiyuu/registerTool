@@ -24,13 +24,9 @@ export default {
   },
   methods: {
     send(){
-      // this.$store.commit('updateForm', val)
-      // console.log(val);
       const typeData = this.$store.state.form.type;
       this.$router.push({ name: 'inputpage', params:{type:typeData}})
     },
   }
 }
 </script>
-
-//.add(...) と .doc().set(...) は完全に同等なので、どちらでも便利な方を使うことができます。

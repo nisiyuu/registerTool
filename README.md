@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # registertool
 商品登録するツール
 

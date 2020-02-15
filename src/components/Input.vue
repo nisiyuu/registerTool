@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>{{ label }}</span>
-    <input 
+    <input
     :value="value"
     @input="$emit('input', $event.target.value)"
     :type="type"

@@ -1,37 +1,48 @@
 <template>
-  <div class="container">
-    <h1>登録タイプ{{type}}</h1>
+  <v-container>
+    <v-row cols="6">
+      <v-col cols="12">登録タイプ{{type}}</v-col>
+      <v-col cols="12">
       <inputbox
       :value="$store.state.form.groupID"
       @input="val => $store.state.form.groupID = val"
       label="groupID"
       />
+      </v-col>
+      <v-col cols="12">
       <inputbox
       :value="$store.state.form.name"
       @input="$store.state.form.name = $event"
       label="name"
       />
+      </v-col>
 
+      <v-col cols="12">
       <textbox
       :value="$store.state.form.description"
       @input="$store.state.form.description = $event"
-      label="商品説明"
+      label="description"
       />
+      </v-col>
+    </v-row>
 
+<v-row cols="12">
+      <v-col cols="12">
       <div>
         <label for="">商品一覧に表示する画像</label>
         <input type="file" @change="onFileChangemain">
-        <img v-show="uploadedImage" :src="uploadedImage"/>
+        <img class="image" v-show="uploadedImage" :src="uploadedImage"/>
 
-        <label for="">samples1枚目</label>
+        <!-- <label for="">samples1枚目</label>
         <input type="file" @change="onFileChange1">
-        
-        <label for="">samples2枚目</label>
-        <input type="file" @change="onFileChange2">
-      </div>
 
-      <button @click="send($store.state.form)">確認画面へ</button>
-  </div>
+        <label for="">samples2枚目</label>
+        <input type="file" @change="onFileChange2"> -->
+      </div>
+      <button @click="send($store.state.form)" v-if="uploadedImage">確認画面へ</button>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 
@@ -40,6 +51,11 @@
   display: grid; /* グリッドレイアウト */
   grid-template-rows: 100px 100px;
   grid-template-columns: 0.5fr 0.5fr;
+}
+
+.image{
+  width:50%;
+  height:50%;
 }
 </style>
 

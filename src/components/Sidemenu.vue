@@ -42,7 +42,7 @@ export default {
   data(){
     return{
       items: [
-          { title: '新規登録', icon: 'mdi-view-dashboard',link: { name: 'selecttype'}},
+          { title: '新規登録', icon: 'mdi-view-dashboard',link: { name: 'inputpage'}},
           { title: '履歴', icon: 'mdi-image',link: { name: 'history'}},
         ],
         right: null,

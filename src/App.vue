@@ -14,7 +14,6 @@
 import Sidemenu from './components/Sidemenu'
 import Toolbar from './components/Toolbar'
 
-
 export default {
   name: 'App',
   components:{

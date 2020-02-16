@@ -7,25 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     dbconnection: null,
-    form:{
-      groupID: '',
-      type: '',
-      name: '',
-      price: '',
-      samplemain:'',
-      samples:[
-        {"sample":''},
-        {"sample":''},        
-      ],
-      description:'',
-      items: [
-        { id: '', size: '', color: '', listItem: '', image: '' },
-        // { "id": "17", "size": "S", "color": "white", "listItem": "white S", "stock": true, "image": "img/7/sample_front.png" },
-      ],
-      stock:true,
-    },
+    newitems:[],
   },
   getters: {
+    newitem(state){
+      return state.newitems;
+    },
     dbconnection(state) {
       if (state.dbconnection !== null) {
         return state.dbconnection;
@@ -46,10 +33,11 @@ export default new Vuex.Store({
   },
   mutations: {
     updateForm(state,formData) {
-      state.form = formData
-    },
-    updateType(state,typeData) {
-      state.form.type = typeData
+      state.newitems.push(formData)
     },
   },
 })
+
+
+
+// { "id": "17", "size": "S", "color": "white", "listItem": "white S", "stock": true, "image": "img/7/sample_front.png" },

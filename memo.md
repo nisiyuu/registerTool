@@ -1,0 +1,10 @@
+1
+selecttypeのprops行けてない
+headerとか使えば？
+
+2
+v-modelでstateの値が直接書き換わっている
+storeを直接書き換えるな
+gettersを使え
+どこからでも書き換えられたらstoreの意味をなさない
+なぜかはmutationの中身をみないとわからないが

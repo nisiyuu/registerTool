@@ -48,5 +48,8 @@ export default new Vuex.Store({
     updateForm(state,formData) {
       state.form = formData
     },
+    updateType(state,typeData) {
+      state.form.type = typeData
+    },
   },
 })

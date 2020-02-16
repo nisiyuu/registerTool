@@ -1,10 +1,11 @@
 <template>
   <div>
     <span>{{ label }}</span>
-    <input 
+    <input
     :value="value"
     @input="$emit('input', $event.target.value)"
     :type="type"
+    :class="border"
     />
   </div>
 </template>
@@ -20,3 +21,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.border{
+  background-color: aquamarine;
+}
+</style>

@@ -1,25 +1,29 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <v-app>
+    <Toolbar/>
+    <v-content>
+      <v-row>
+        <v-col cols="4"><Sidemenu/></v-col>
+        <v-col cols="8"><router-view/></v-col>
+      </v-row>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  components: {
-   
-  }
-}
-</script>
+import Sidemenu from './components/Sidemenu'
+import Toolbar from './components/Toolbar'
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+export default {
+  name: 'App',
+  components:{
+    Sidemenu,
+    Toolbar
+  },
+  data(){
+    return{
+
+    }
+  }
+};
+</script>

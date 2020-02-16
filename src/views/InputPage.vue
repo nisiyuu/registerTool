@@ -1,94 +1,95 @@
 <template>
-  <div class="container">
-    <h1>登録タイプ{{type}}</h1>
-      <inputbox
-      :value="$store.state.form.groupID"
-      @input="val => $store.state.form.groupID = val"
-      label="groupID"
-      />
-      <inputbox
-      :value="$store.state.form.name"
-      @input="$store.state.form.name = $event"
-      label="name"
-      />
+  <div>
+    <v-col cols="6">
+      <v-select
+        v-model="type"
+        :items="items"
+        label="登録登録商品のタイプを選んでください"
+        outlined
+      ></v-select>
+    </v-col>
+      <v-col cols="2">
+      <v-text-field
+        v-model="groupID"
+        label="商品ID"
+        required
+      >
+      </v-text-field>
+      </v-col>
 
-      <textbox
-      :value="$store.state.form.description"
-      @input="$store.state.form.description = $event"
-      label="商品説明"
-      />
+      <v-col cols="6">
+      <v-text-field
+        v-model="name"
+        label="商品名"
+        required
+      >
+      </v-text-field>
+      </v-col>
 
-      <div>
-        <label for="">商品一覧に表示する画像</label>
-        <input type="file" @change="onFileChangemain">
-        <img v-show="uploadedImage" :src="uploadedImage"/>
+      <v-col cols="6">
+      <v-text-field
+      v-model="description"
+      label="商品概要"
+      required
+      >
+      </v-text-field>
+      </v-col>
 
-        <label for="">samples1枚目</label>
-        <input type="file" @change="onFileChange1">
-        
-        <label for="">samples2枚目</label>
-        <input type="file" @change="onFileChange2">
-      </div>
+      <v-col cols="6">
+      <v-btn @click="send()">確認画面へ</v-btn>
+      </v-col>
 
-      <button @click="send($store.state.form)">確認画面へ</button>
   </div>
 </template>
 
-
-<style scoped>
-.container {
-  display: grid; /* グリッドレイアウト */
-  grid-template-rows: 100px 100px;
-  grid-template-columns: 0.5fr 0.5fr;
-}
-</style>
-
-
 <script>
-import inputbox from '../components/Input'
-import textbox from '../components/Textarea'
-
 export default {
-  props:{
-    type:{type:String, default:'01'},
-  },
   components:{
-    inputbox,
-    textbox
   },
   data(){
     return{
-      uploadedImage: '',
+      type:'',
+      groupID:'',
+      name:'',
+      description:'',
+      items:[
+        {text:'01.ikuyoオリジナル', value:'01'},
+        {text:'02.ユーズド', value:'02'},
+        {text:'03.その他', value:'03'}
+      ],
     }
   },
   computed:{
+    
   },
   methods: {
-    send(val){
-      this.$store.commit('updateForm', val)
-      console.log(val);
+    send (){
+      const selectedItem = {
+        type: this.type,
+        groupID:this.groupID,
+        name:this.name,
+        description:this.description,
+      }
+      this.$store.commit('updateForm',selectedItem);
       this.$router.push({ name: 'confirmpage'})
-    },
-    onFileChangemain(e) {
-      this.$store.state.form.samplemain = 'img/'+ e.target.files[0].name;
-      let files = e.target.files || e.dataTransfer.files;
-      this.createImage(files[0]);
-    },
-    createImage(file) {
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.uploadedImage = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-    onFileChange1(e) {
-      this.$store.state.form.samples[0].sample = 'img/'+ e.target.files[0].name;
-    },
-    onFileChange2(e) {
-      this.$store.state.form.samples[1].sample = 'img/'+ e.target.files[0].name;
     },
   }
 }
 </script>
 
-//.add(...) と .doc().set(...) は完全に同等なので、どちらでも便利な方を使うことができます。
+<style scoped>
+.imageRegister{
+  margin-bottom:5%;
+  margin-top:2%;
+}
+
+.image{
+  width: 200px;
+  height: 200px;
+}
+
+.imageInput{
+  margin-top:1%;
+}
+</style>
+

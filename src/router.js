@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SelectType from './views/SelectType.vue'
+import History from './views/History.vue'
 import InputPage from './views/InputPage.vue'
 import Success from './views/Success.vue'
 import Failure from './views/Failure.vue'
@@ -23,12 +23,12 @@ const router = new Router({
       component: vuelearning
     },
     {
-      path: '/',
-      name: 'selecttype',
-      component: SelectType
+      path: '/history',
+      name: 'history',
+      component: History
     },
     {
-      path: '/inputpage/:type',
+      path: '/',
       name: 'inputpage',
       component: InputPage,
       props:true

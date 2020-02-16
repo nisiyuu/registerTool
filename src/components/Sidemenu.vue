@@ -10,9 +10,6 @@
           <v-list-item-title class="title">
             登録
           </v-list-item-title>
-          <v-list-item-subtitle>
-            fight
-          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -25,7 +22,7 @@
         <v-list-item
           v-for="item in items"
           :key="item.title"
-          link
+          :to="item.link"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -45,9 +42,8 @@ export default {
   data(){
     return{
       items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard' },
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
+          { title: '新規登録', icon: 'mdi-view-dashboard',link: { name: 'selecttype'}},
+          { title: '履歴', icon: 'mdi-image',link: { name: 'history'}},
         ],
         right: null,
     }

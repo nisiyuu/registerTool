@@ -1,18 +1,18 @@
 <template>
   <v-container fluid>
     <v-row align="center">
-      <v-col class="d-flex" cols="12">
+      <v-col class="d-flex" cols="7">
         <v-select
           v-model="value"
           :items="items"
-          label="登録商品のタイプを選んでください"
+          label="登録登録商品のタイプを選んでください"
           dense
           outlined
         ></v-select>
       </v-col>
 
       <v-col class="d-flex" cols="6">
-      <v-btn @click="send(value)">商品登録画面へ</v-btn>
+      <v-btn @click="send(value)">次へ</v-btn>
       </v-col>
 
       </v-row>
@@ -28,9 +28,9 @@ export default {
     return{
       value:'',
       items:[
-        {text:'ikuyoオリジナル', value:'01'},
-        {text:'ユーズド', value:'02'},
-        {text:'その他', value:'03'}
+        {text:'01.ikuyoオリジナル', value:'01'},
+        {text:'02.ユーズド', value:'02'},
+        {text:'03.その他', value:'03'}
       ]
     }
   },

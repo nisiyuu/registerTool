@@ -1,7 +1,7 @@
 <template>
   <div>
     {{$store.state.form}}
-  <p><button @click="dbSet()">送信</button></p>
+  <v-btn @click="dbSet()">送信</v-btn>
   </div>
 </template>
 

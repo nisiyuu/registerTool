@@ -27,29 +27,25 @@
       >
       </v-text-field>
       </v-col>
-
-      <v-row>
-      <v-col cols="6">
+    
+      <v-col cols="12">
       <div class="imageRegister">
         <label for="">商品一覧に表示する画像</label>
-        <input type="file" @change="onFileChangemain" class="imageInput">
+        <input type="file" @change="onFileChangemain">
+        <img class="image" v-show="uploadedImage" :src="uploadedImage"/>
       </div>
-      <div class="imageRegister">
-        <label for="">正面画像</label><br>
-        <input type="file" @change="onFileChange1" class="imageInput"><br>
+      <div>
+        <label for="">samples1枚目</label>
+        <input type="file" @change="onFileChange1">
+        <img class="image" v-show="uploadedImage1" :src="uploadedImage"/>
       </div>
-      <div class="imageRegister">
-        <label for="">背面画像</label><br>
-        <input type="file" @change="onFileChange2" class="imageInput">
+      <div>
+        <label for="">samples2枚目</label>
+        <input type="file" @change="onFileChange2">
+        <img class="image" v-show="uploadedImage2" :src="uploadedImage"/>
       </div>
-      <v-btn @click="send($store.state.form)" :disabled="!(uploadedImage&&uploadedImage1&&uploadedImage2)">確認画面へ</v-btn>
+      <button @click="send($store.state.form)" v-if="uploadedImage">確認画面へ</button>
       </v-col>
-      <v-col cols="6">
-      <div><img class="image" v-show="uploadedImage" :src="uploadedImage"/></div>
-      <div><img class="image" v-show="uploadedImage1" :src="uploadedImage1"/></div>
-      <div><img class="image" v-show="uploadedImage2" :src="uploadedImage2"/></div>
-      </v-col>
-      </v-row>
     </v-row>
 </template>
 
@@ -67,12 +63,8 @@
 }
 
 .image{
-  width: 200px;
-  height: 200px;
-}
-
-.imageInput{
-  margin-top:1%;
+  width:50%;
+  height:50%;
 }
 </style>
 
@@ -92,7 +84,6 @@ export default {
     }
   },
   computed:{
-    
   },
   methods: {
     send(val){

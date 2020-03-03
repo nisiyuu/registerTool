@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from './views/Home.vue'
 import History from './views/History.vue'
+import SelectType from './views/SelectType.vue'
 import InputPage from './views/InputPage.vue'
 import Success from './views/Success.vue'
 import Failure from './views/Failure.vue'
@@ -23,12 +25,23 @@ const router = new Router({
       component: vuelearning
     },
     {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
       path: '/history',
       name: 'history',
       component: History
     },
     {
-      path: '/',
+      path: '/selecttype',
+      name: 'selecttype',
+      component: SelectType,
+      props:true
+    },
+    {
+      path: '/inputpage',
       name: 'inputpage',
       component: InputPage,
       props:true
@@ -36,7 +49,8 @@ const router = new Router({
     {
       path: '/confirmpage',
       name: 'confirmpage',
-      component: ConfirmPage
+      component: ConfirmPage,
+      props:true
     },
     {
       path: '/success',

@@ -1,8 +1,32 @@
 <template>
-  <div>
-    {{confirmItems}}
-  <v-btn @click="dbSet()">送信</v-btn>
+<div>
+  <div v-show="!confirmItems[0].name" align="center" class="mt-12">
+      <span>商品情報に不備があります</span>
+      <div class="mt-12"><v-btn :to="{name: 'selecttype'}">戻る</v-btn></div>
   </div>
+    <v-card class="mt-10" :color="color" v-show="confirmItems[0].name">
+    <v-row justify="center">
+      <v-col cols=11 lg=5 md=5 sm=11 class="mt-2" v-show="confirmItems[0].samplemain">
+        <img :src="confirmItems[0].samplemain" class="img_size ml-6">
+      </v-col>
+      <v-col cols=11 lg=5 md=5 sm=11 class="mt-2" v-show="!confirmItems[0].samplemain">
+        画像は登録されていません
+      </v-col>
+
+      <v-col cols=11 lg=6 md=6 sm=11 class="mt-2">
+        <v-card outlined><v-col cols=11 lg=11 md=11 sm=11>商品タイプ</v-col></v-card>
+        <v-col>{{confirmItems[0].type}}</v-col>
+        <v-card outlined><v-col cols=11 lg=11 md=11 sm=11>商品ID</v-col></v-card>
+        <v-col>{{confirmItems[0].groupID}}</v-col>
+        <v-card outlined><v-col cols=12 lg=12 md=12 sm=12>商品名</v-col></v-card>
+        <v-col>{{confirmItems[0].name}}</v-col>
+        <v-card outlined><v-col cols=12 lg=12 md=12 sm=12>商品概要</v-col></v-card>
+        <v-col>{{confirmItems[0].description}}</v-col>
+      <v-col align="end"><v-btn @click="dbSet()">送信</v-btn></v-col>
+      </v-col>
+    </v-row>
+    </v-card>
+</div>
 </template>
 
 
@@ -10,6 +34,9 @@
 export default {
   components:{
     
+  },
+  props:{
+    color:{type:String,default:'#add8e6'}
   },
   data(){
     return{
@@ -19,27 +46,29 @@ export default {
   computed:{
     confirmItems(){
        return this.$store.getters.newitem
-    }
+    },
   },
   methods: {
+    createImage(file) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
       dbSet(){
-          const senddata = this.$store.state.newitems;
-          senddata.forEach(element => {
-            this.$store.getters.dbconnection.collection("items").doc(element.groupID).set(
-            element,
-          )
-          .then(docRef => {
-          console.log("Document written with ID: ", docRef);
-          this.$router.push({ name: 'success' })//成功へページ遷移
-          })
-          .catch(error => {
-          console.error("Error adding document: ", error);
-          this.$router.push({ name: 'failure' })//失敗へページ遷移
-          });
-          });
+          const senddata = this.$store.state.newitems[0];
+          console.log(senddata);
+          this.$store.dispatch('dataSet',senddata);
       }
   }
 }
 </script>
 
-//.add(...) と .doc().set(...) は完全に同等なので、どちらでも便利な方を使うことができます。
+<style scoped>
+.img_size{
+  width:20vw;
+  height:80%;
+}
+
+</style>

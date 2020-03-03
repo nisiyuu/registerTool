@@ -6,6 +6,7 @@
         v-for="(item,i) in itemlist"
         :key="i"
         :small="true"
+        color="black"
       >
         <span slot="opposite">{{item.time.toDate()}}</span>
         <v-card class="elevation-2">

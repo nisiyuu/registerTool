@@ -6,36 +6,64 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    dbconnection: null,
+    login_user: null,
     newitems:[],
   },
   getters: {
     newitem(state){
       return state.newitems;
     },
-    dbconnection(state) {
-      if (state.dbconnection !== null) {
-        return state.dbconnection;
-      }
-      const firebaseConfig = {
-        apiKey: "AIzaSyCMnTH8vTFh9q3y9Cx_Bb6HkwqjguMztx4",
-        authDomain: "ikuyoproject-9e009.firebaseapp.com",
-        databaseURL: "https://ikuyoproject-9e009.firebaseio.com",
-        projectId: "ikuyoproject-9e009",
-        storageBucket: "ikuyoproject-9e009.appspot.com",
-        messagingSenderId: "966232363555",
-        appId: "1:966232363555:web:7e412b4d1941af98"
-      };
-      firebase.initializeApp(firebaseConfig);
-      state.dbconnection = firebase.firestore();
-      return state.dbconnection;
-    },
+    userName: state => state.login_user ? state.login_user.displayName : '',
+    photoURL: state => state.login_user ? state.login_user.photoURL : '',
   },
   mutations: {
+    setLoginUser (state, user) {
+      state.login_user = user
+    },
+    deleteLoginUser (state) {
+      state.login_user = null
+    },
     updateForm(state,formData) {
       state.newitems.push(formData)
     },
+    updateType(state, type) {
+      state.newitems.push(type)
+    }
   },
+  actions: {
+    setLoginUser ({ commit }, user) {
+      commit('setLoginUser', user)
+    },
+    login() {
+      const google_auth_provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithRedirect(google_auth_provider);
+    },
+    logout () {
+      firebase.auth().signOut()
+    },
+    deleteLoginUser ({ commit }) {
+      commit('deleteLoginUser')
+    },
+    dataSet(context, senddata) {
+        console.log('w足した青',senddata)
+        firebase.firestore().collection("test").add(senddata)
+          .then(docRef => {
+            console.log("Document written with ID: ", docRef);
+            self.$router.push({ name: 'inputpage' })//成功へページ遷移
+          })
+          .catch(error => {
+            console.error("Error adding document: ", error);
+            self.$router.push({ name: 'failure' })//失敗へページ遷移
+          });
+    },
+    async getItems() {
+      const items = await firebase.firestore().collection("test").get()
+      .then(querySnapshot => {
+         return querySnapshot.docs.map(elem => elem.data())
+      })
+      return items
+    },
+  }
 })
 
 

@@ -1,8 +1,14 @@
 <template>
-<div>
-  <v-card class="mt-10" :color="color">
-    <v-row justify="center">
-      <v-col cols=11 lg=8 md=8 sm=11 class="mt-6">
+  <div>
+    <v-col cols=11 lg=8 md=8 sm=11>
+      <v-select
+        v-model="type"
+        :items="items"
+        label="商品タイプを選ぶ"
+        outlined
+      ></v-select>
+    </v-col>
+      <v-col cols=11 lg=8 md=8 sm=11>
       <v-text-field
         v-model="groupID"
         label="商品ID"
@@ -35,14 +41,11 @@
       <v-col cols=11 lg=8 md=8 sm=11>
       <v-file-input label="File input" @change="onFileChangemain"></v-file-input>
       </v-col>
-      
 
-      <v-col cols=12 lg=11 md=11 sm=11 align="end">
-      <v-btn :to="{name: 'selecttype'}" class="mr-4">戻る</v-btn>
+      <v-col cols=11 lg=8 md=8 sm=11>
       <v-btn @click="send()">確認画面へ</v-btn>
       </v-col>
-    </v-row>
-        </v-card>
+
   </div>
 </template>
 
@@ -50,45 +53,37 @@
 export default {
   components:{
   },
-  props:{
-    type:{type:String,default:'01'},
-    color:{type:String,default:'#add8e6'}
-  },
   data(){
     return{
+      type:'',
       groupID:'',
       name:'',
       description:'',
       samplemain:'',
+      items:[
+        {text:'01.オリジナル', value:'01'},
+        {text:'02.ユーズド', value:'02'},
+        {text:'03.その他', value:'03'}
+      ],
     }
+  },
+  computed:{
+    
   },
   methods: {
     send (){
       const selectedItem = {
-        type:this.type,
+        type: this.type,
         groupID:this.groupID,
         name:this.name,
         description:this.description,
         samplemain:this.samplemain,
-        time:new Date(),
       }
       this.$store.commit('updateForm',selectedItem);
-      console.log(this.color)
-      this.$router.push({ name: 'confirmpage',params:{color:this.color}})
+      this.$router.push({ name: 'confirmpage'})
     },
-    onFileChangemain(file) {
-      if (file !== undefined && file !== null) {
-        if (file.name.lastIndexOf('.') <= 0) {
-          return
-        }
-        const fr = new FileReader()
-        fr.readAsDataURL(file)
-        fr.addEventListener('load', () => {
-          this.samplemain = fr.result
-        })
-      } else {
-        this.samplemain = ''
-      }
+    onFileChangemain(e) {
+      this.samplemain = 'img/'+ e.name;
     },
   }
 }

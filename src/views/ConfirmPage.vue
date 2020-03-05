@@ -1,10 +1,10 @@
 <template>
 <div>
-  <div v-show="!confirmItems[0].name" align="center" class="mt-12">
-      <span>商品情報に不備があります</span>
+  <div v-show="!confirmItems[0].name" align="center" class="ma-0 pa-0">
+      <span>商品タイプ選択からやり直して下さい</span>
       <div class="mt-12"><v-btn :to="{name: 'selecttype'}">戻る</v-btn></div>
   </div>
-    <v-card class="mt-10" :color="color" v-show="confirmItems[0].name">
+    <v-card class="ma-0 pa-0" :color="color" v-show="confirmItems[0].name">
     <v-row justify="center">
       <v-col cols=11 lg=5 md=5 sm=11 class="mt-2" v-show="confirmItems[0].samplemain">
         <img :src="confirmItems[0].samplemain" class="img_size ml-6">
@@ -22,7 +22,10 @@
         <v-col>{{confirmItems[0].name}}</v-col>
         <v-card outlined><v-col cols=12 lg=12 md=12 sm=12>商品概要</v-col></v-card>
         <v-col>{{confirmItems[0].description}}</v-col>
-      <v-col align="end"><v-btn @click="dbSet()">送信</v-btn></v-col>
+      <v-col align="end">
+        <v-btn class="mr-4" @click="reset()">戻る</v-btn>
+        <v-btn @click="dbSet()">送信</v-btn>
+        </v-col>
       </v-col>
     </v-row>
     </v-card>
@@ -49,6 +52,10 @@ export default {
     },
   },
   methods: {
+    reset(){
+      this.$store.dispatch('typereset');
+      this.$router.push({ name: 'selecttype'})
+    },
     createImage(file) {
       const reader = new FileReader();
       reader.onload = e => {
@@ -60,6 +67,7 @@ export default {
           const senddata = this.$store.state.newitems[0];
           console.log(senddata);
           this.$store.dispatch('dataSet',senddata);
+          this.$store.dispatch('typereset');
       }
   }
 }

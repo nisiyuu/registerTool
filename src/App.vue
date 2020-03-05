@@ -4,8 +4,8 @@
     <v-content>
       <v-row>
         <v-col cols="3"><Sidemenu v-show="this.$router.currentRoute.name !== 'home'" /></v-col>
-        <v-col cols="9">
-          <v-col cols=11 lg=11 md=11 sm=11>
+        <v-col cols="9" class="pa-0 ma-0">
+          <v-col cols=11 lg=11 md=11 sm=11 class="pa-0 mr-0 ml-0 mt-4 mb-0">
   <v-stepper v-show="this.$router.currentRoute.name !== 'history' && this.$router.currentRoute.name !== 'home'"
   v-model="e1"
   >

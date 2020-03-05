@@ -1,12 +1,12 @@
 <template>
-<div align="center">
+<div align="center" class="ma-0">
           <v-card
             :color="img.color"
             dark
             v-for="(img,i) in imgs"
             :key="i"
             @click="send(img.type,img.color)"
-            class="mt-10"
+            class="mb-8 mt-3"
           >
             <v-card-title class="headline">{{img.text}}</v-card-title>
             <img

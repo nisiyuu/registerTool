@@ -1,6 +1,7 @@
 <template>
 <div>
-  <v-card class="mt-10" :color="color">
+  <v-form v-model="valid">
+  <v-card class="ma-0" :color="color">
     <v-row justify="center">
       <v-col cols=11 lg=8 md=8 sm=11 class="mt-6">
       <v-text-field
@@ -8,6 +9,7 @@
         label="商品ID"
         required
         prepend-icon="edit"
+        :rules="groupIDRules"
       >
       </v-text-field>
       </v-col>
@@ -18,6 +20,7 @@
         label="商品名"
         required
         prepend-icon="edit"
+        :rules="nameRules"
       >
       </v-text-field>
       </v-col>
@@ -27,22 +30,24 @@
       v-model="description"
       label="商品概要"
       required
+      :rules="descriptionRules"
       prepend-icon="mdi-message-text"
       >
       </v-text-field>
       </v-col>
 
       <v-col cols=11 lg=8 md=8 sm=11>
-      <v-file-input label="File input" @change="onFileChangemain"></v-file-input>
+      <v-file-input :rules="fileRules" required show-size label="File input" @change="onFileChangemain"></v-file-input>
       </v-col>
       
 
-      <v-col cols=12 lg=11 md=11 sm=11 align="end">
+      <v-col cols=11 lg=11 md=11 sm=11 align="end">
       <v-btn :to="{name: 'selecttype'}" class="mr-4">戻る</v-btn>
-      <v-btn @click="send()">確認画面へ</v-btn>
+      <v-btn :disabled="!valid" @click="send()">確認画面へ</v-btn>
       </v-col>
     </v-row>
         </v-card>
+  </v-form>
   </div>
 </template>
 
@@ -56,10 +61,24 @@ export default {
   },
   data(){
     return{
+      valid:true,
       groupID:'',
       name:'',
       description:'',
       samplemain:'',
+      groupIDRules: [
+          v => !!v || '商品IDは必須です',
+        ],
+        nameRules: [
+          v => !!v || '商品名は必須です',
+        ],
+        descriptionRules: [
+          v => !!v || '商品概要は必須です',
+        ],
+        fileRules:[
+          v => !!v || '画像ファイルは必須です',
+          value => !value || value.size < 900000 || '画像サイズは900000bytesまでです',
+        ],
     }
   },
   methods: {
@@ -71,6 +90,7 @@ export default {
         description:this.description,
         samplemain:this.samplemain,
         time:new Date(),
+        color:this.color
       }
       this.$store.commit('updateForm',selectedItem);
       console.log(this.color)

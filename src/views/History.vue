@@ -1,7 +1,20 @@
 <template>
   <div class="font">
+    <v-row justify="end" class="ma-0 mt-0">
+    <v-col cols=7 lg=5 md=5 sm=7>
+        <v-select
+        label="商品タイプ"
+        v-model="selectId"
+        :items="checkType" 
+        item-value="value" 
+        item-text="text"
+        prepend-icon="search"
+        >
+        </v-select>
+    </v-col>
+    </v-row>
     <v-card class="mb-10 pa-0" :color="item.color"
-    v-for="(item,i) in itemlist"
+    v-for="(item,i) in eventedAction"
     :key="i"
     >
     <v-row justify="center" align="center">
@@ -31,12 +44,12 @@
 export default {
   data(){
     return{
-      itemlist:null,
+      itemlist:[],
+      selectId:null,
     }
   },
   async mounted(){
     this.itemlist = await this.$store.dispatch('getItems');
-    console.log(this.itemlist[0].time);
   },
   methods:{
     deleteConfirm(ida){
@@ -47,6 +60,21 @@ export default {
       deleteData(id){
         this.$store.dispatch('deleteData',id);
       }
+  },
+  computed: {
+    eventedAction() {
+      // return this.itemlist.map(item => ( { value: item.type, text: item.type }));
+      if(!this.selectId){
+        return this.itemlist;
+      }
+      else{
+      return this.itemlist.filter(x => x.type == this.selectId)
+      }
+    },
+    checkType() {
+      return this.itemlist.map(item => ( { value: item.type, text: item.type }));
+      // return this.itemlist.filter(x => x.type == this.selectId)
+    }
   },
 }
 </script>

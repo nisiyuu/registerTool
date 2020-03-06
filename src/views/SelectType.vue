@@ -25,9 +25,9 @@ export default {
   data(){
     return{
       imgs:[
-      {icon:'./img/original.png',type:'01',text:'original',subtext:'ikuyoオリジナルの商品の登録',color:"#add8e6"},
-      {icon:'./img/used.png',type:'02',text:'select',subtext:'古着をはじめとしたセレクト商品の登録',color:"#f4a460"},
-      {icon:'./img/sticker.png',type:'03',text:'others',subtext:'ステッカーをはじめとした雑貨類の登録',color:"#ffc0cb"}
+      {icon:'./img/original.png',type:'original',text:'original',subtext:'ikuyoオリジナルの商品の登録',color:"#add8e6"},
+      {icon:'./img/used.png',type:'select',text:'select',subtext:'古着をはじめとしたセレクト商品の登録',color:"#f4a460"},
+      {icon:'./img/sticker.png',type:'others',text:'others',subtext:'ステッカーをはじめとした雑貨類の登録',color:"#ffc0cb"}
       ]
     }
   },

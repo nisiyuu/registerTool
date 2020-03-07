@@ -1,7 +1,7 @@
 <template>
   <div class="font">
     <v-row justify="end" class="ma-0 mt-0">
-    <v-col cols=7 lg=5 md=5 sm=7>
+    <v-col cols=10 lg=5 md=5 sm=10>
         <v-select
         label="商品タイプ"
         v-model="selectId"
@@ -18,14 +18,14 @@
     :key="i"
     >
     <v-row justify="center" align="center">
-      <v-col cols=10 lg=5 md=5 sm=10 class="mt-2" align="center">
+      <v-col cols=10 lg=5 md=5 sm=10 class="mt-0" align="center">
       <v-col><img :src="item.samplemain" class="img_size"></v-col>
       <v-col cols=10 lg=5 md=5 sm=10><v-card outlined><v-col>登録日時</v-col></v-card></v-col>
         <v-col>{{item.time.toDate()}}</v-col>
       </v-col>
       
-      <v-col cols=10 lg=5 md=5 sm=10 class="mt-2">
-        <v-card outlined><v-col cols=11 lg=11 md=11 sm=11>商品タイプ</v-col></v-card>
+      <v-col cols=10 lg=5 md=5 sm=10>
+        <v-card outlined class="mt-2"><v-col cols=11 lg=11 md=11 sm=11>商品タイプ</v-col></v-card>
         <v-col>{{item.type}}</v-col>
         <v-card outlined><v-col cols=11 lg=11 md=11 sm=11>商品ID</v-col></v-card>
         <v-col>{{item.groupID}}</v-col>
@@ -33,7 +33,10 @@
         <v-col>{{item.name}}</v-col>
         <v-card outlined><v-col cols=12 lg=12 md=12 sm=12>商品概要</v-col></v-card>
         <v-col>{{item.description}}</v-col>
-        <v-col align="end"><v-btn class="mt-3" @click="deleteConfirm(item.groupID)">削除</v-btn></v-col>
+        <v-col align="end">
+          <!-- <v-btn class="mt-3" @click="updateInfo(item.groupID)">編集</v-btn> -->
+          <v-btn class="mt-2" @click="deleteConfirm(item.groupID)">削除</v-btn>
+        </v-col>
       </v-col>
     </v-row>
     </v-card>

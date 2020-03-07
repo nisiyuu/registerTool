@@ -68,6 +68,7 @@ export default {
       samplemain:'',
       groupIDRules: [
           v => !!v || '商品IDは必須です',
+          v => isNaN(v) == false || '半角数字で入力してください'
         ],
         nameRules: [
           v => !!v || '商品名は必須です',
